@@ -42,7 +42,7 @@ services:
       - "traefik.http.routers.hasura.rule=Host(`localhost`) && PathPrefix(`/`)"
       - "traefik.http.routers.hasura.entrypoints=web"
   auth:
-    image: nhost/hasura-auth:0.16.2
+    image: nhost/hasura-auth:0.19.1
     depends_on:
       - postgres
       - graphql-engine
@@ -70,7 +70,7 @@ services:
       - "traefik.http.routers.auth.middlewares=strip-auth@docker"
       - "traefik.http.routers.auth.entrypoints=web"
   storage:
-    image: nhost/hasura-storage:0.3.1
+    image: nhost/hasura-storage:0.3.4
     depends_on:
       - postgres
       - graphql-engine
@@ -140,7 +140,7 @@ services:
     volumes:
       - ./data/mailhog:/maildir
   dashboard:
-    image: nhost/dashboard:0.7.4
+    image: nhost/dashboard:0.14
     ports:
       - "3030:3000"
 volumes:
